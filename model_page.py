@@ -14,9 +14,18 @@ def load_page() -> None:
     model_page_components.add_portfolio_risk_score(
         model_page_components.calculate_score()
     )
-    if st.session_state["generate_analysis"]:  # Check if button is clicked
-        model_page_components.add_portfolio_graph()
-        model_page_components.add_risk_profile_chart()
+    if st.session_state["generate_analysis"]:  # Check if analysis is triggered
+        # Create two columns for displaying graphs
+        col1, col2 = st.columns(2)
+
+        # Display first graph in the first column
+        with col1:
+            model_page_components.add_portfolio_graph()
+
+        # Display second graph in the second column
+        with col2:
+            model_page_components.add_risk_profile_chart()
+            
     selected_scenario = model_page_components.add_simulation_scenarios()
 
     if selected_scenario is not None:
