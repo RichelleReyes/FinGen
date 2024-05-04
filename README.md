@@ -16,6 +16,12 @@
 
 <hr>
 
+## Using the application
+
+- Click here: https://fingen.streamlit.app/
+
+<hr>
+
 ## Development setup
 
 ### Prerequisites
