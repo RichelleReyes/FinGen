@@ -6,26 +6,20 @@ import plotly.express as px
 import plotly.graph_objs as go
 import numpy as np
 
-def add_portfolio_returns_graphs(portfolio_df: pd.DataFrame) -> None:
-    tools.create_line_chart(portfolio_df)
-    # st.line_chart(portfolio_df, use_container_width=True, height=500, width=250)
-
-
-def add_download_button(df: pd.DataFrame) -> None:
-    # convert my_portfolio_returns ndarray to dataframe
-    df = pd.DataFrame(df)
-
-    col1, col2, col3, col4 = st.columns(4)
-
-    with col4:
-        st.download_button(label="Download Portfolio Returns",
-                           data=df.to_csv(),
-                           file_name="Portfolio Returns.csv",
-                           mime="text/csv")
-
 
 def add_portfolio_risk_score(risk_score: float) -> None:
-    st.header(f"Portfolio Risk Score: {risk_score}")
+    # Define the color based on the risk score range
+    if 0 <= risk_score <= 35:
+        color = "green"
+    elif 36 <= risk_score <= 75:
+        color = "blue"
+    elif 76 <= risk_score <= 100:
+        color = "red"
+    else:
+        color = "black"  # Default color (if score is out of expected range)
+
+    # Use Markdown to display the risk score with styled color
+    st.markdown(f"<h3 style='color: {color};'>Portfolio Risk Score: {risk_score}</h3>", unsafe_allow_html=True)
 
 def calculate_score():
     stock_percentage_risk = 0.8
@@ -41,6 +35,7 @@ def calculate_score():
     )
 
     return risk_score
+
 
 def add_portfolio_graph():
     # Sample data for portfolio composition (replace with your actual data)
@@ -58,6 +53,7 @@ def add_portfolio_graph():
                 title='Portfolio Composition', 
                 color_discrete_sequence=px.colors.qualitative.Set3)
     st.plotly_chart(fig)
+
 
 risk_ratings = {'Stocks': 0.8, 'Bonds': 0.6, 'Real Estate': 0.2, 'Cash': 0.1}
 

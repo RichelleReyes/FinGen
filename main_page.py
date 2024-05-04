@@ -15,4 +15,7 @@ tools.remove_white_space()
 
 comp.load_sidebar()
 
+if 'generate_analysis' not in st.session_state:
+    st.session_state['generate_analysis'] = False
+
 model_page.load_page()
