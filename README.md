@@ -51,3 +51,7 @@ poetry install
 ```
 poetry run streamlit run main_page.py
 ```
+
+## Acknowledgements
+
+The graphs of our Streamlit app were based on the FinRisk project by [DelinM](https://github.com/delinm/finrisk/blob/main/main_page.py).
