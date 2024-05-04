@@ -102,31 +102,31 @@ def generate_asset_data(scenario):
     # Generate synthetic data based on the selected scenario
     if scenario == "Scenario 1: Economic downturn":
         # Generate synthetic data representing stock prices under economic downturn
-        stock_prices = np.random.normal(loc=50, scale=5, size=num_days)  # Example synthetic data
-        bond_prices = np.random.normal(loc=1000, scale=20, size=num_days)  # Example synthetic data
-        real_estate_prices = np.random.normal(loc=200000, scale=5000, size=num_days)  # Example synthetic data
-        cash_values = np.random.normal(loc=50000, scale=1000, size=num_days)  # Example synthetic data
+        stock_prices = np.random.normal(loc=30, scale=3, size=num_days)  # Example synthetic data
+        bond_prices = np.random.normal(loc=30, scale=3, size=num_days)  # Example synthetic data
+        real_estate_prices = np.random.normal(loc=30, scale=3, size=num_days)  # Example synthetic data
+        cash_values = np.random.normal(loc=30, scale=3, size=num_days)  # Example synthetic data
         
     elif scenario == "Scenario 2: Market boom":
         # Generate synthetic data representing stock prices under market boom
-        stock_prices = np.random.normal(loc=100, scale=10, size=num_days)  # Example synthetic data
-        bond_prices = np.random.normal(loc=1100, scale=30, size=num_days)  # Example synthetic data
+        stock_prices = np.random.normal(loc=250000, scale=10000, size=num_days)  # Example synthetic data
+        bond_prices = np.random.normal(loc=250000, scale=10000, size=num_days)  # Example synthetic data
         real_estate_prices = np.random.normal(loc=250000, scale=10000, size=num_days)  # Example synthetic data
-        cash_values = np.random.normal(loc=55000, scale=2000, size=num_days)  # Example synthetic data
+        cash_values = np.random.normal(loc=250000, scale=10000, size=num_days)  # Example synthetic data
 
     elif scenario == "Scenario 3: Global pandemic":
         # Generate synthetic data representing stock prices during a global pandemic
-        stock_prices = np.random.normal(loc=30, scale=3, size=num_days)
+        stock_prices = np.random.normal(loc=900, scale=15, size=num_days)
         bond_prices = np.random.normal(loc=900, scale=15, size=num_days)
-        real_estate_prices = np.random.normal(loc=180000, scale=4000, size=num_days)
-        cash_values = np.random.normal(loc=45000, scale=1500, size=num_days)
+        real_estate_prices = np.random.normal(loc=900, scale=15, size=num_days)
+        cash_values = np.random.normal(loc=900, scale=15, size=num_days)
 
     elif scenario == "Scenario 4: Market crash":
         # Generate synthetic data representing stock prices during a market crash
-        stock_prices = np.random.normal(loc=20, scale=2, size=num_days)
-        bond_prices = np.random.normal(loc=800, scale=10, size=num_days)
+        stock_prices = np.random.normal(loc=160000, scale=3000, size=num_days)
+        bond_prices = np.random.normal(loc=160000, scale=3000, size=num_days)
         real_estate_prices = np.random.normal(loc=160000, scale=3000, size=num_days)
-        cash_values = np.random.normal(loc=40000, scale=1000, size=num_days)
+        cash_values = np.random.normal(loc=160000, scale=3000, size=num_days)
 
         
     # Define similar synthetic data generation for other scenarios
@@ -142,8 +142,12 @@ def generate_asset_data(scenario):
 def visualize_asset_data(asset_data):
     # Create a time series plot using Plotly
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=asset_data["Date"], y=asset_data["Stock_Price"], mode='lines', name='Stock Price'))
-    # Add additional traces for other assets if needed
+
+    # Add traces for each asset
+    fig.add_trace(go.Scatter(x=asset_data["Date"], y=asset_data["Stock_Price"], mode='lines', name='Stock Price', line=dict(color='blue')))
+    fig.add_trace(go.Scatter(x=asset_data["Date"], y=asset_data["Bond_Price"], mode='lines', name='Bond Price', line=dict(color='green')))
+    fig.add_trace(go.Scatter(x=asset_data["Date"], y=asset_data["Real_Estate_Price"], mode='lines', name='Real Estate Price', line=dict(color='red')))
+    fig.add_trace(go.Scatter(x=asset_data["Date"], y=asset_data["Cash_Value"], mode='lines', name='Cash Value', line=dict(color='orange')))
     
     # Customize layout
     fig.update_layout(title='Asset Price Over Time',
